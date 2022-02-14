@@ -15,5 +15,5 @@
 - name: 'Check output of getenforce after reboot'
   shell: 'getenforce'
   register: 'getenforce_output'
-  failed_when: '"Disabled" in getenforce_output.stdout'
+  failed_when: '"Enforcing" not in getenforce_output.stdout'
   changed_when: 'false'
