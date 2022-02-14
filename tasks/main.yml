@@ -1,0 +1,19 @@
+---
+# set_SELINUX_to_enforcing/tasks/main.yml
+
+- name: 'Set SELINUX state to enforcing'
+  selinux:
+    state: 'enforcing'
+    policy: "{{ selinux_policy }}"
+  notify:
+    - 'Reboot'
+    - 'Wait for the machine(s) to be ready again'
+
+# flush handlers to trigger reboot now
+- meta: flush_handlers
+
+- name: 'Check output of getenforce after reboot'
+  shell: 'getenforce'
+  register: 'getenforce_output'
+  failed_when: '"Disabled" in getenforce_output.stdout'
+  changed_when: 'false'
