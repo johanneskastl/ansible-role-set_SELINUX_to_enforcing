@@ -1,5 +1,6 @@
 galaxy_info:
   role_name: 'set_SELINUX_to_enforcing'
+  namespace: 'johanneskastl'
   author: 'Johannes Kastl'
   description: 'Set SELINUX to enforcing, reboot the machine and check the status after the reboot.'
   company: 'B1 Systems GmbH'
